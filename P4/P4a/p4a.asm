@@ -1,4 +1,4 @@
-%include "../LIB/pc_io.inc"  	; incluir declaraciones de procedimiento externos
+%include "../../LIB/pc_io.inc"  	; incluir declaraciones de procedimiento externos
 								; que se encuentran en la biblioteca libpc_io.a
 
 section	.data
@@ -10,6 +10,12 @@ section	.text
 _start:                   
 	mov edx, msg		; edx = dirección de la cadena msg
 	call puts			; imprime cadena msg terminada en valor nulo (0)
+
+    mov al, "Z" 		;modo de direccionamiento directo
+    mov [msg],al
+
+    mov edx, msg
+    call puts
 
 	mov	eax, 1	    	; seleccionar llamada al sistema para fin de programa
 	int	0x80        	; llamada al sistema - fin de programa

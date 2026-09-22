@@ -1,0 +1,24 @@
+%include "../../LIB/pc_io.inc" 
+
+
+section .data 
+msg	db  'abcdefghijklmnopqrstuvwxyz0123456789',0xa,0 
+
+section .text
+    global _start
+
+_start:
+
+mov edx, msg
+call puts 
+
+mov al, 'X'
+
+mov edx, msg+23
+mov byte [edx], al ; modo de direccionamiento indirecto 
+
+mov edx, msg
+call puts
+
+mov eax,1       ;fin del programa
+int 0x80 
