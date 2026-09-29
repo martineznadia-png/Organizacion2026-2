@@ -28,8 +28,11 @@ _start:
     mov esi, 0x20d685f3     ;0010-0000-1101-0110-1000-0101-1111-0011
     mov eax,esi
     call pBin_dw
-    
-    xor esi, 0x20021001 
+
+    mov al,10	; cambio de linea
+	call putchar
+
+    xor esi, 0x20021011
     mov eax,esi
     call pBin_dw
 
