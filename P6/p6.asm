@@ -4,6 +4,8 @@ extern pBin_b
 extern pBin_w
 extern pBin_dw
 
+;ld -m elf_i386 (archivo.o) (direccion de libreria) -l(direccion de la carpeta donde se encuenta la libreria) -(nombre del archivo) -o (nombre del ejecutable)
+
 section	.text
 
 	global _start       ;must be declared for using gcc
@@ -32,12 +34,44 @@ _start:
     mov al,10	; cambio de linea
 	call putchar
 
-    xor esi, 0x20021011
+    xor esi, 0x40022021
     mov eax,esi
     call pBin_dw
 
     mov al,10 
     call putchar
+
+    push esi
+    pop esi 
+    call pBin_dw
+
+    push esi
+    mov al,10
+    call putchar
+
+    mov ch, 0xa7            ;1010-0111
+    or ch, 0x48             ;0100-1000
+
+    mov al, ch
+    call pBin_b 
+
+    mov al,10 
+    call putchar
+
+    mov bp, 0x67da          ;0110-0111-1101-1010
+    mov ax, bp
+    call pBin_w
+
+    mov al,10
+    call putchar
+
+    and bp, 0xbbac          ;1011-1011-1010-1101
+    mov ax,bp 
+    call pBin_w
+
+    mov al,10
+    call putchar
+
 
 	mov eax, 1	;system call number (sys_exit) -- fin del programa
 	int 0x80        ;call kernel
