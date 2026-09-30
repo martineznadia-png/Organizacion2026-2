@@ -72,6 +72,18 @@ _start:
     mov al,10
     call putchar
 
+    call pBin_w
+
+    mov al,10
+    call putchar
+
+    shr bp, 3
+    mov ax,bp 
+    call pBin_w
+
+    mov al,10
+    call putchar
+
 
 	mov eax, 1	;system call number (sys_exit) -- fin del programa
 	int 0x80        ;call kernel
