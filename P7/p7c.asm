@@ -16,19 +16,20 @@ sub ax, '0'         ;convertimos el valor ascii en valor numerico
 mov cx, ax
 
 mov ax, '*'
-@@comenzarTriangulo: inc dx
+@@comenzarTriangulo: inc bx
+
 call putchar
 
 inc ax 
-cmp dx, cx 
+cmp bx, cx 
 jnae @@comenzarTriangulo        ;salta si es menor a 3
 
-@@comparar: cmp dx, cx 
+@@comparar: cmp bx, cx 
 jna @@terminarTriangulo
 jmp @@fin
 
 @@terminarTriangulo: call putchar 
-dec dx 
+dec bx 
 dec ax 
 jmp @@comparar
 
