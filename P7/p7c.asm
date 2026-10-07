@@ -15,23 +15,26 @@ call getche         ;ingresa el valor del caracter ingresado y lo mete en ax
 sub ax, '0'         ;convertimos el valor ascii en valor numerico
 mov cx, ax
 
-mov ax, '*'
-@@comenzarTriangulo: inc bx
+mov bx,1            ;fila del triangulo
+@@comenzarTriangulo: bx, cx 
+ja @@terminarTriangulo  ;salta si es mayor 
 
+@@imprimirLinea: cmp si, bx              ;uso si para saber la cantidad de * que tengo 
+jbe @@saltoDeLinea      ;salta si es menor o igual (cambia de linea de impresion)
+
+mov al, '*'
 call putchar
 
-inc ax 
-cmp bx, cx 
-jnae @@comenzarTriangulo        ;salta si es menor a 3
+inc si 
+jmp @@imprimirLinea
 
-@@comparar: cmp bx, cx 
-jna @@terminarTriangulo
-jmp @@fin
+@@saltoDeLinea: mov al, 10
+call putchar 
+inc bx          ;incremena bx para cambiar de linea
+jmp @@comenzarTriangulo
 
-@@terminarTriangulo: call putchar 
-dec bx 
-dec ax 
-jmp @@comparar
+
+@@terminarTriangulo: 
 
 @@fin: mov eax,1
 int 0x80
