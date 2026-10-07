@@ -20,15 +20,15 @@ cmp dl, 48
 jae @@esMayora0    ;salta si es mayor o igual 
 jmp @@verificarLetra
 
-@@esMayora0: cmd dl, 57
+@@esMayora0: cmp dl, 57
 jbe @@esNumero
 jmp @@verificarLetra
 
-@@verificarLetra: cmd dl, 65
+@@verificarLetra: cmp dl, 65
 jae @@esMayoraA 
 jmp @@fin 
 
-@@esMayoraA: cmd dl, 90
+@@esMayoraA: cmp dl, 90
 jbe @@esLetra 
 jmp @@fin 
 
