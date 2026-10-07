@@ -10,20 +10,26 @@ _start:
 
 call getche         ;guarda en al el byte correcpondiente al caracter y hace eco en pantalla
 
-cmp al, '123'       ;se compara si el caracter es menor a "z" (como no se como hacer el <= a z tomo el valor ascii de "{" para que tambien cuente si es igual a z)
-jnc @@esMenoraZ     ;si en la bandera de carri hay un cero es que es menor
+mov dl, al          ; muevo el valor del al (mi caracter) a dl para poder hacer un salto de linea
+
+mov al,10           ; hago salto de linea
+call putchar
+
+cmp dl, 122         ;se compara si el caracter es menor a "z"
+jbe @@esMenoraZ     ;salta si es menor o igual
 jmp @@fin 
 
-@@esMenoraZ: cmp al, '98'
-jc @@verificar 
+@@esMenoraZ: cmp dl, 97
+jae @@verificar     ;salta si es mayor o igual
 jmp @@fin 
 
-@@verificar: cmp al, '109'
-jnc @@esMenoraM
+@@verificar: cmp dl, 109
+jnae @@esMenoraM    ;salta si es menor
 jmp @@fin
 
-@@esMenoraM: mov ebx, msg
+@@esMenoraM: mov edx, msg
 call puts
+
 
 @@fin: mov eax,1 
 int 0x80
