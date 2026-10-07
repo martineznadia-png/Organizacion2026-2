@@ -20,11 +20,29 @@ _start:                     ;tell linker entry point
     mov al,8            ;se ingresa el valor de 8 en al Ya que al multiplica a bl
     mul bl              ;se multiplica bl por el valor que esta en al
 
-    mov WORD [N],ax            ;el resultado de la multiplicacion se guarda en ax, entonces se le pasa el valor de ax a N 
-    call pHex_w         ;el resultado se guarda en ax y se imprime para comprobar que se realizo la multiplicacion
+    mov WORD [N],ax     ;el resultado de la multiplicacion se guarda en ax, entonces se le pasa el valor de ax a N 
+    
+    inc WORD [N]        ;Se incrementa 1 el valor que apunta N        
 
-	mov al,10	; cambio de linea
-	call putchar
+    mov ax,0xff
+    div  bx     
+    
+    add WORD [N], dx
+
+    dec WORD [N]        ;decrementa 1 a N
+
+    mov ax, [N]
+    call pHex_w 
+
+    mov al, 10          ; Cambio de línea
+    call putchar
+
+    pushf               ; Empuja el registro de banderas a la pila
+    pop ax              ; Copia el valor de banderas a ax
+    call pHex_w         ; Imprime el registro de banderas
+
+    mov al, 10          ; Cambio de línea
+    call putchar
 
 	mov eax, 1	;system call number (sys_exit) -- fin del programa
 	int 0x80        ;call kernel

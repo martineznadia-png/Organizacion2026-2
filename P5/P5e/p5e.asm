@@ -1,5 +1,9 @@
 %include "../../LIB/pc_iox.inc"
 
+section .data
+
+    N dw 0           ;declaramos variable N en 0
+
 section	.text
 
 	global _start       ;must be declared for using gcc
@@ -15,26 +19,20 @@ _start:                     ;tell linker entry point
 
     mov al,8            ;se ingresa el valor de 8 en al Ya que al multiplica a bl
     mul bl              ;se multiplica bl por el valor que esta en al
+
+    mov WORD [N],ax     ;el resultado de la multiplicacion se guarda en ax, entonces se le pasa el valor de ax a N 
     
-    inc ax              ;se incrementa 1 al resultado de la multiplicacion
+    inc WORD [N]        ;Se incrementa 1 el valor que apunta N        
 
-    mov ax, bx          
-    call pHex_w 
-
-    mov al,10	; cambio de linea
-	call putchar
-
-    mov ax, 0xff        
-    div bx              ;se divide el valor de bx entre lo que tiene ax
-    call pHex_w         ;imprimimos el resultado de la division
+    mov ax,0xff
+    div  bx     
+    call pHex_w
 
     mov al,10	; cambio de linea
 	call putchar
 
-    mov ax,dx           ;movemos el resultado del residuo a ax
-    call pHex_w         ;imprimimos
-
-
+    mov ax,dx 
+    call pHex_w   
 
 	mov al,10	; cambio de linea
 	call putchar

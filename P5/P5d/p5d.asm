@@ -2,7 +2,7 @@
 
 section .data
 
-    N dw 0               ;declaramos variable N en 0
+    N dw 0           ;declaramos variable N en 0
 
 section	.text
 
@@ -20,11 +20,12 @@ _start:                     ;tell linker entry point
     mov al,8            ;se ingresa el valor de 8 en al Ya que al multiplica a bl
     mul bl              ;se multiplica bl por el valor que esta en al
 
-    mov N, ax           ;el resultado de la multiplicacion se guarda en ax, entonces se le pasa el valor de ax a N 
-
-    inc N               ;se incrementa en 1 el valor de N 
-    mov ax,N            ;para imprimirse se le pasa el valor de N a ax
-    call pHex_w         ;el resultado se guarda en ax y se imprime para comprobar que se realizo la multiplicacion
+    mov WORD [N],ax     ;el resultado de la multiplicacion se guarda en ax, entonces se le pasa el valor de ax a N 
+    
+    inc WORD [N]        ;Se incrementa 1 el valor que apunta N      
+    
+    mov ax,[N]
+    call pHex_w             
 
 	mov al,10	; cambio de linea
 	call putchar

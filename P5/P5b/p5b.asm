@@ -12,8 +12,8 @@ _start:                     ;tell linker entry point
     add ebx,eax         ;a 0x5c4b2a60 se le suma el valor de la matricula y se guarda en ebx
 
     push bx              ;se insertan los 16 bits menos significativos de ebx a la pila
-    mov ax, bx
-    call pHex_w
+    mov eax, ebx
+    call pHex_dw
 
 	mov al,10	; cambio de linea
 	call putchar

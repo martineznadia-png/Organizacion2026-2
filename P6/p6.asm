@@ -84,6 +84,57 @@ _start:
     mov al,10
     call putchar
 
+    mov eax,ebx 
+    call pBin_dw
+
+    mov al,10 
+    call putchar
+
+    shr ebx, 5 
+    mov eax, ebx 
+    call pBin_dw
+
+    mov al, 10
+    call putchar 
+
+    mov ax, cx 
+    call pBin_w
+
+    mov al,10 
+    call putchar
+
+    mov cl, 3
+    shl ax, cl               ;con shl se puede decir que miltiplica por potencias como 2^4 = 8 entonces estamos multiplicando por 8 
+    call pBin_w
+
+    mov al,10 
+    call putchar
+
+    pop eax                 ;se copia un valor de la pila a eax
+    call pBin_dw
+
+    mov al,10
+    call putchar
+
+    mov eax, esi 
+    call pBin_dw
+
+    mov al, 10
+    call putchar
+
+    add cl, 2 
+    mov al, cl 
+    call pBin_b
+    mov al, 10 
+    call putchar
+    
+    shl esi, cl 
+
+    mov eax, esi 
+    call pBin_dw
+
+    mov al,10 
+    call putchar
 
 	mov eax, 1	;system call number (sys_exit) -- fin del programa
 	int 0x80        ;call kernel
