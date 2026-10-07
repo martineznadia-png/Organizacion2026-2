@@ -1,0 +1,43 @@
+%include "../LIB/pc_iox.inc"
+
+section .data 
+numero db 'El caracter es un numero',0xa,0
+letra db 'El caracter es una letra',0xa,0
+
+section .text
+    global _start
+
+_start:
+
+call getche 
+
+mov dl, al          ;cambio el lugar de mi caracter para poder hacer cambio de linea 
+
+mov al,10 
+call putchar
+
+cmp dl, 48
+jae @@esMayora0    ;salta si es mayor o igual 
+jmp @@verificarLetra
+
+@@esMayora0: cmd dl, 57
+jbe @@esNumero
+jmp @@verificarLetra
+
+@@verificarLetra: cmd dl, 65
+jae @@esMayoraA 
+jmp @@fin 
+
+@@esMayoraA: cmd dl, 90
+jbe @@esLetra 
+jmp @@fin 
+
+@@esNumero: mov edx, numero 
+call puts 
+jmp @@fin
+
+@@esLetra: mov edx,letra
+call puts 
+
+@@fin: mov eax,1
+int 0x80
