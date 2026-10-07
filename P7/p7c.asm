@@ -15,7 +15,7 @@ mov al,10
 call putchar 
 
 call getche         ;ingresa el valor del caracter ingresado y lo mete en ax
-
+sub ax, '0'         ;convertimos el valor ascii en valor numerico
 mov cx, ax
 
 mov ax, 'x'
