@@ -11,16 +11,13 @@ _start:
 mov edx,msg 
 call puts 
 
-mov al,10
-call putchar 
-
 call getche         ;ingresa el valor del caracter ingresado y lo mete en ax
 sub ax, '0'         ;convertimos el valor ascii en valor numerico
 mov cx, ax
 
-mov ax, 'x'
+mov ax, '*'
 @@comenzarTriangulo: inc dx
-call puts
+call putchar
 
 inc ax 
 cmp dx, cx 
@@ -30,7 +27,7 @@ jnae @@comenzarTriangulo        ;salta si es menor a 3
 jna @@terminarTriangulo
 jmp @@fin
 
-@@terminarTriangulo: call puts 
+@@terminarTriangulo: call putchar 
 dec dx 
 dec ax 
 jmp @@comparar
