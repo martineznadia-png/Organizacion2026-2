@@ -12,7 +12,7 @@ pBin8b: push ebp
 mov ebp, esp
 mov al, [ebp+8]
 mov cl, 0 
-and al
+and al,cl 
 shl al, 8 
 loopne pBin8b
 
