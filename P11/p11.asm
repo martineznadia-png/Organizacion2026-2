@@ -21,7 +21,7 @@ ret
 
 str_mid: push ebx 
 mov ecx,eax 
-
+mov ebx,eax
 
 
 mov eax,1 
