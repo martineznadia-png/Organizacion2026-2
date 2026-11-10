@@ -5,7 +5,7 @@ section .data
 section .text
     global _start
     global pBin8b
-
+    
 _start:
 
 pBin8b: push ebp 
